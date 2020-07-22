@@ -1,21 +1,24 @@
 package br.com.javaplatform;
 
-import br.com.javaplatform.enums.MessagesEnum;
+import java.util.List;
+
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.ChatAction;
+import com.pengrad.telegrambot.request.GetUpdates;
 import com.pengrad.telegrambot.request.SendChatAction;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.BaseResponse;
+import com.pengrad.telegrambot.response.GetUpdatesResponse;
 import com.pengrad.telegrambot.response.SendResponse;
 
-import java.util.List;
+import br.com.javaplatform.estados.MaquinaDeMensagens;
 
 public class JPUtilityBot extends TelegramBot {
 
-    private Integer messagesNotReadIndex = 0;
-
+    private MaquinaDeMensagens maquinaDeMensagens = new MaquinaDeMensagens(this);
+    
     public JPUtilityBot(String botToken) {
         super(botToken);
     }
@@ -24,24 +27,11 @@ public class JPUtilityBot extends TelegramBot {
 
         this.setUpdatesListener(new UpdatesListener() {
 
-            MessagesEnum activeState;
-            //MessagesEnum activeState = MessagesEnum.OLA;
-
             @Override
             public int process(List<Update> updates) {
-
+            	 
                 for(Update update: updates) {
-                    String message = update.message().text();
-                    System.out.println("Recebendo mensagem: " + message);
-
-                    activeState = MessagesEnum.detectNextState(message);
-
-                    Long chatId = update.message().chat().id();
-
-                    sendAction(chatId, ChatAction.typing);
-                    sendMessage(chatId, activeState.message());
-
-                    //activeState = activeState.nextState(message);
+                	maquinaDeMensagens.getEstado().matcher(update);
                 };
 
                 return UpdatesListener.CONFIRMED_UPDATES_ALL;
@@ -49,21 +39,57 @@ public class JPUtilityBot extends TelegramBot {
 
         });
     }
+    
+	public static void start(String str) {
+		TelegramBot bot = new TelegramBot(str);
+		
+		// objeto responsável por receber as mensagens
+		GetUpdatesResponse updatesResponse;
+
+		// objeto responsável por gerenciar o envio de respostas
+		SendResponse sendResponse;
+
+		// objeto responsável por gerenciar o envio de ações do chat
+		BaseResponse baseResponse;
+
+		// controle de off-set, isto é, a partir deste ID será lido as mensagens
+		// pendentes na fila
+		int m = 0;
+
+		// loop infinito pode ser alterado por algum timer de intervalo curto
+
+		while (true) {
+			// executa comando no Telegram para obter as mensagens pendentes a partir de um
+			// off-set (limite inicial)
+			updatesResponse = bot.execute(new GetUpdates().limit(100).offset(m));
+
+			// lista de mensagens
+			List<Update> updates = updatesResponse.updates();
+
+			// análise de cada ação da mensagem
+			for (Update update : updates) {
+
+				// atualização do off-set
+				m = update.updateId() + 1;
+				System.out.println("Recebendo mensagem:" + update.message().text());
+
+				// envio de "Escrevendo" antes de enviar a resposta
+				baseResponse = bot.execute(new SendChatAction(update.message().chat().id(), ChatAction.typing.name()));
+
+				// verificação de ação de chat foi enviada com sucesso
+				System.out.println("Resposta de Chat Action Enviada?" + baseResponse.isOk());
+
+				// envio da mensagem de resposta
+				sendResponse = bot.execute(new SendMessage(update.message().chat().id(), "Não entendi..."));
+
+				// verificação de mensagem enviada com sucesso
+				System.out.println("Mensagem Enviada?" + sendResponse.isOk());
+			}
+		}
+	}
 
     public void stop() {
         this.removeGetUpdatesListener();
     }
-
-    private void sendAction(Long chatId, ChatAction action) {
-        // Enviando a informaÃ§Ã£o que o bot estÃ¡ digitando a mensagem
-        BaseResponse baseResponse = this.execute(new SendChatAction(chatId, action.name()));
-        System.out.println("AÃ§Ã£o do chat enviada? " + baseResponse.isOk());
-    }
-
-    private void sendMessage(Long chatId, String message) {
-        SendResponse sendResponse = this.execute(new SendMessage(chatId, message));
-        System.out.println("Mensagem enviada? " + sendResponse.isOk());
-    }
-
 
 }
