@@ -12,6 +12,8 @@ public enum MessagesEnum {
 
     DESPEDIDA("\\b(?:Obrigado|Até|Adeus|Tchau)\\b"),
     
+    NAO_NTENDI(""),
+    
     AJUDA("\\b(?:ajuda|ajudar|fazer)\\b"),
 
 	CLIMA("/(?:clima)"),

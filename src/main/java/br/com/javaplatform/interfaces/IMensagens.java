@@ -50,9 +50,10 @@ public abstract class IMensagens {
 				case DESPEDIDA:
 					respostaDespedida(update);
 					break;
+				default:
+					MessagePrepare("Desculpa, mas não entendi o que você disse!", update);
+					break;
 				}
-	        }else {
-				MessagePrepare("Desculpa, mas entendi o que você disse!", update);
 	        }
 		}
 	};

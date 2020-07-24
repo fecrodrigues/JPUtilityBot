@@ -17,6 +17,7 @@ import br.com.javaplatform.estados.MaquinaDeMensagens;
 
 public class JPUtilityBot extends TelegramBot {
 
+	private Integer messagesNotReadIndex = 0;
     private MaquinaDeMensagens maquinaDeMensagens = new MaquinaDeMensagens(this);
     
     public JPUtilityBot(String botToken) {
