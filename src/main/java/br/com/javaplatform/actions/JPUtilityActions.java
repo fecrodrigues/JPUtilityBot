@@ -25,8 +25,9 @@ public class JPUtilityActions {
                 StringBuilder welcomeMessage = new StringBuilder();
 
                 return welcomeMessage
-                            .append("Olá, me chamo Utility Boot, aqui estão algumas coisas que consigo fazer: \n")
-                            .append("/cep {cep} (Ex: /cep 0333300) \n")
+                            .append("Ola! Meu nome e Utility Boot e aqui estao algumas coisas que consigo fazer: \n")
+                            .append("/clima - informacoes gerais sobre o clima \n")
+                            .append("/cep - consulta de CEP \n")
                             .toString();
 
             case "/cep":

@@ -20,14 +20,14 @@ public class Despedida extends IMensagens{
 
 	@Override
 	public void respostaDialogo1(Update update) {
-		String msg = "Esta tudo OK.";
+		String msg = "Esta tudo OK";
 		
 		MessagePrepare(msg, update);
 	}
 
 	@Override
 	public void respostaDialogo2(Update update) {
-		String msg = "Tenho 10 anos a menos que você e mais 20 do que seu irmão";
+		String msg = "Tenho 10 anos a menos que você e 20 a mais do que seu irmão";
 		
 		MessagePrepare(msg, update);	
 	}

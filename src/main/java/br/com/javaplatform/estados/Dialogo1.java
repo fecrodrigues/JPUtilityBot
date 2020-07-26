@@ -14,7 +14,7 @@ public class Dialogo1 extends IMensagens{
 
 	@Override
 	public void respostaBoasVindas(Update update) {
-		String msg = "Nossa, quantas vezes eu preciso falar \"Bom Dia\" hein";
+		String msg = "Nossa, quantas vezes eu vou precisar falar \"Bom Dia\"?";
 		
 		MessagePrepare(msg, update);
 	}

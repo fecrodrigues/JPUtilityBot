@@ -28,6 +28,7 @@ public abstract class IMensagens {
 	
 	public void matcher(Update update) {
 	    String message = update.message().text();
+	    Boolean isMsgNaoEntendida = false;
 		
 		for(MessagesEnum msg : MessagesEnum.values()) {
 	        Pattern pattern = Pattern.compile(msg.getRegex());
@@ -50,11 +51,14 @@ public abstract class IMensagens {
 				case DESPEDIDA:
 					respostaDespedida(update);
 					break;
-				default:
-					MessagePrepare("Desculpa, mas não entendi o que você disse!", update);
-					break;
 				}
+	        }else {
+				isMsgNaoEntendida = true;
 	        }
+		}
+		
+		if(isMsgNaoEntendida) {
+			MessagePrepare("Desculpa, mas não entendi o que você disse!", update);
 		}
 	};
 	

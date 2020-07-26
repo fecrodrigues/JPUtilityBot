@@ -20,7 +20,7 @@ public class Dialogo3 extends IMensagens{
 
 	@Override
 	public void respostaDialogo1(Update update) {
-		String msg = "Não tenho feito nada de novo recentemente, mas gostaria de fazer uma viajem";
+		String msg = "Não tenho feito nada de novo recentemente, mas gostaria de viajar";
 		
 		MessagePrepare(msg, update);
 	}

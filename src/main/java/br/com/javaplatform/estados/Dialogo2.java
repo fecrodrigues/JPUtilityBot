@@ -20,7 +20,7 @@ public class Dialogo2 extends IMensagens{
 
 	@Override
 	public void respostaDialogo1(Update update) {
-		String msg = "Esta tudo bem. Confesso que gostaria de sair de casa, mas tenho que seguir a quarentena";
+		String msg = "Esta tudo bem. Confesso que gostaria de sair de casa, mas tenho que respeitar a quarentena";
 		
 		MessagePrepare(msg, update);
 	}
@@ -36,7 +36,7 @@ public class Dialogo2 extends IMensagens{
 
 	@Override
 	public void respostaDialogo3(Update update) {
-		String msg = "Não tenho feito muita coisa devido a pandemia";
+		String msg = "Não tenho feito muita coisa, mas seria bom prativar uma atividade física";
 		
 		MessagePrepare(msg, update);
 	}

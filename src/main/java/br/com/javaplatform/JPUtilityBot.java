@@ -36,20 +36,26 @@ public class JPUtilityBot extends TelegramBot {
             public int process(List<Update> updates) {
             	 
                 for(Update update: updates) {
-                	String message = update.message().text();
-                    System.out.println("Recebendo mensagem: " + message);
-
-                    Long chatId = update.message().chat().id();
-                    sendAction(chatId, ChatAction.typing);
-                    String messageToSend;
-
-                    if(message.indexOf("/") == 0) {
-                        jpUtilityActions = new JPUtilityActions();
-                        messageToSend = jpUtilityActions.callAction(message);
-                        sendMessage(chatId, messageToSend);
-                    } else {
-                    	maquinaDeMensagens.getEstado().matcher(update);
-                    }
+                	try {
+                		String message = update.message().text();
+                		System.out.println("Recebendo mensagem: " + message);
+                		
+                		Long chatId = update.message().chat().id();
+                		sendAction(chatId, ChatAction.typing);
+                		String messageToSend;
+                		
+                		if(message.indexOf("/") == 0) {
+                			jpUtilityActions = new JPUtilityActions();
+                			messageToSend = jpUtilityActions.callAction(message);
+                			sendMessage(chatId, messageToSend);
+                		} else {
+                			maquinaDeMensagens.getEstado().matcher(update);
+                		}
+					} catch (Exception e) {
+                		Long chatId = update.message().chat().id();
+                		sendAction(chatId, ChatAction.typing);
+            			sendMessage(chatId, "Desculpe, mas não entendi vossa mensagem");
+					}
                 };
 
                 return UpdatesListener.CONFIRMED_UPDATES_ALL;
