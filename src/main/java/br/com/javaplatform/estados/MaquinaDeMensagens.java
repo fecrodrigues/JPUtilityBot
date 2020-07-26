@@ -15,9 +15,9 @@ public class MaquinaDeMensagens {
 	public MaquinaDeMensagens(JPUtilityBot bot){
 		boasVindas = new BoasVindas(bot,this);
 		dialogo1 = new Dialogo1(bot, this);
-//		dialogo2 = new Dialogo2(bot, this);
-//		dialogo3 = new Dialogo3(bot, this);
-//		despedida = new Despedida(bot, this);
+		dialogo2 = new Dialogo2(bot, this);
+		dialogo3 = new Dialogo3(bot, this);
+		despedida = new Despedida(bot, this);
 		
 		this.estado = boasVindas;
 	}

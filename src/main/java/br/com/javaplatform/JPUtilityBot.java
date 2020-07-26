@@ -36,26 +36,20 @@ public class JPUtilityBot extends TelegramBot {
             public int process(List<Update> updates) {
             	 
                 for(Update update: updates) {
-//                	maquinaDeMensagens.getEstado().matcher(update);
-
                 	String message = update.message().text();
                     System.out.println("Recebendo mensagem: " + message);
 
-//                    Long chatId = update.message().chat().id();
-//                    sendAction(chatId, ChatAction.typing);
+                    Long chatId = update.message().chat().id();
+                    sendAction(chatId, ChatAction.typing);
                     String messageToSend;
 
                     if(message.indexOf("/") == 0) {
                         jpUtilityActions = new JPUtilityActions();
                         messageToSend = jpUtilityActions.callAction(message);
+                        sendMessage(chatId, messageToSend);
                     } else {
-//                        activeState = MessagesEnum.detectNextState(message);
-//                        messageToSend = activeState.message();
                     	maquinaDeMensagens.getEstado().matcher(update);
                     }
-
-//                    sendMessage(chatId, messageToSend);
-                    //activeState = activeState.nextState(message);
                 };
 
                 return UpdatesListener.CONFIRMED_UPDATES_ALL;
@@ -64,6 +58,17 @@ public class JPUtilityBot extends TelegramBot {
         });
     }
 
+    private void sendAction(Long chatId, ChatAction action) {
+        // Enviando a informação que o bot está digitando a mensagem
+        BaseResponse baseResponse = this.execute(new SendChatAction(chatId, action.name()));
+        System.out.println("Ação do chat enviada? " + baseResponse.isOk());
+    }
+
+    private void sendMessage(Long chatId, String message) {
+        SendResponse sendResponse = this.execute(new SendMessage(chatId, message));
+        System.out.println("Mensagem enviada? " + sendResponse.isOk());
+    }
+    
     public void stop() {
         this.removeGetUpdatesListener();
     }
