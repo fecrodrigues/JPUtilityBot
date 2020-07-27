@@ -28,37 +28,41 @@ public abstract class IMensagens {
 	
 	public void matcher(Update update) {
 	    String message = update.message().text();
-	    Boolean isMsgNaoEntendida = false;
+	    Boolean isMsgNaoEntendida = true;
+	    int contador = 0;
 		
 		for(MessagesEnum msg : MessagesEnum.values()) {
 	        Pattern pattern = Pattern.compile(msg.getRegex());
 	        Matcher matcher = pattern.matcher(message.toLowerCase());
 
-	        if(matcher.find()) {
+	        if(matcher.find() && contador == 0) {
 	            switch (msg) {
 				case BOAS_VINDAS:
 					respostaBoasVindas(update);
+					contador++;
 					break;
 				case DIALOGO1:
 					respostaDialogo1(update);
+					contador++;
 					break;
 				case DIALOGO2:
 					respostaDialogo2(update);
+					contador++;
 					break;
 				case DIALOGO3:
 					respostaDialogo3(update);
+					contador++;
 					break;
 				case DESPEDIDA:
 					respostaDespedida(update);
+					contador++;
+					break;
+				case NAO_ENTENDI:
+					MessagePrepare("Desculpa, mas não entendi o que você disse! [Teste]", update);
+					contador++;
 					break;
 				}
-	        }else {
-				isMsgNaoEntendida = true;
 	        }
-		}
-		
-		if(isMsgNaoEntendida) {
-			MessagePrepare("Desculpa, mas não entendi o que você disse!", update);
 		}
 	};
 	
