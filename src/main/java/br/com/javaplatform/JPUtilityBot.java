@@ -54,7 +54,7 @@ public class JPUtilityBot extends TelegramBot {
 					} catch (Exception e) {
                 		Long chatId = update.message().chat().id();
                 		sendAction(chatId, ChatAction.typing);
-            			sendMessage(chatId, "Desculpe, mas n„o entendi vossa mensagem");
+            			sendMessage(chatId, "Desculpe, mas n√£o entendi vossa mensagem");
 					}
                 };
 
