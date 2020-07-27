@@ -1,20 +1,28 @@
 package br.com.javaplatform;
 
+import java.util.List;
+
+import br.com.javaplatform.actions.JPUtilityActions;
 import br.com.javaplatform.enums.MessagesEnum;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.ChatAction;
+import com.pengrad.telegrambot.request.GetUpdates;
 import com.pengrad.telegrambot.request.SendChatAction;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.BaseResponse;
+import com.pengrad.telegrambot.response.GetUpdatesResponse;
 import com.pengrad.telegrambot.response.SendResponse;
 
-import java.util.List;
+import br.com.javaplatform.estados.MaquinaDeMensagens;
 
 public class JPUtilityBot extends TelegramBot {
 
-    private Integer messagesNotReadIndex = 0;
+	private Integer messagesNotReadIndex = 0;
+    private MaquinaDeMensagens maquinaDeMensagens = new MaquinaDeMensagens(this);
+    
+    JPUtilityActions jpUtilityActions;
 
     public JPUtilityBot(String botToken) {
         super(botToken);
@@ -24,34 +32,36 @@ public class JPUtilityBot extends TelegramBot {
 
         this.setUpdatesListener(new UpdatesListener() {
 
-            MessagesEnum activeState;
-            //MessagesEnum activeState = MessagesEnum.OLA;
-
             @Override
             public int process(List<Update> updates) {
-
+            	 
                 for(Update update: updates) {
-                    String message = update.message().text();
-                    System.out.println("Recebendo mensagem: " + message);
-
-                    activeState = MessagesEnum.detectNextState(message);
-
-                    Long chatId = update.message().chat().id();
-
-                    sendAction(chatId, ChatAction.typing);
-                    sendMessage(chatId, activeState.message());
-
-                    //activeState = activeState.nextState(message);
+                	try {
+                		String message = update.message().text();
+                		System.out.println("Recebendo mensagem: " + message);
+                		
+                		Long chatId = update.message().chat().id();
+                		sendAction(chatId, ChatAction.typing);
+                		String messageToSend;
+                		
+                		if(message.indexOf("/") == 0) {
+                			jpUtilityActions = new JPUtilityActions();
+                			messageToSend = jpUtilityActions.callAction(message);
+                			sendMessage(chatId, messageToSend);
+                		} else {
+                			maquinaDeMensagens.getEstado().matcher(update);
+                		}
+					} catch (Exception e) {
+                		Long chatId = update.message().chat().id();
+                		sendAction(chatId, ChatAction.typing);
+            			sendMessage(chatId, "Desculpe, mas não entendi vossa mensagem");
+					}
                 };
 
                 return UpdatesListener.CONFIRMED_UPDATES_ALL;
             }
 
         });
-    }
-
-    public void stop() {
-        this.removeGetUpdatesListener();
     }
 
     private void sendAction(Long chatId, ChatAction action) {
@@ -64,6 +74,9 @@ public class JPUtilityBot extends TelegramBot {
         SendResponse sendResponse = this.execute(new SendMessage(chatId, message));
         System.out.println("Mensagem enviada? " + sendResponse.isOk());
     }
-
+    
+    public void stop() {
+        this.removeGetUpdatesListener();
+    }
 
 }
