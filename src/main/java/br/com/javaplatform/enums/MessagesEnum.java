@@ -10,7 +10,7 @@ public enum MessagesEnum {
 
     DIALOGO3("\\b(?:fazendo)\\b"),
 
-    DESPEDIDA("\\b(?:Obrigado|Até|Adeus|Tchau)\\b"),
+    DESPEDIDA("\\b(?:Obrigado|AtÃ©|Adeus|Tchau)\\b"),
     
     NAO_ENTENDI("");
 
