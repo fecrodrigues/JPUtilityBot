@@ -6,8 +6,8 @@ public class Constantes {
 	
 	//Mensagens de Boas Vindas
 	public final static String MSG_BOAS_VINDAS_1 = EmojiParser.parseToUnicode("Olá! Eu sou um BOT aprendiz :alien:, prazer em conhecer você :smile:");
-	public final static String MSG_BOAS_VINDAS_2 = "Acredito que ja tenha falado \"Oi\" para você hoje";
-	public final static String MSG_BOAS_VINDAS_3 = "Por que você gosta de falar tantos \"Oi\"?";
+	public final static String MSG_BOAS_VINDAS_2 = EmojiParser.parseToUnicode("Acredito que ja tenha falado \"Oi\" para você hoje :eyes:");
+	public final static String MSG_BOAS_VINDAS_3 = EmojiParser.parseToUnicode("Por que você gosta de falar tantos \"Oi\"? :anger:");
 	public final static String MSG_BOAS_VINDAS_4 = "Nossa, quantas vezes eu vou precisar falar \"Bom Dia\"?";
 	public final static String MSG_BOAS_VINDAS_5 = "Acho que ja tivemos essa coversa, não?";
 	
@@ -21,13 +21,13 @@ public class Constantes {
 	//Mensagens do Dialogo 2
 	public final static String MSG_DIALOGO2_1 = "Acho que antes de falarmos de idade, poderiamos começar com um \"Bom Dia!\", não?";
 	public final static String MSG_DIALOGO2_2 = "Não somos tao chegados a esse ponto";
-	public final static String MSG_DIALOGO2_3 = "Acabei de nascer! Tenho poucas horas de vida";
-	public final static String MSG_DIALOGO2_4 = "Acredito que já tenha respondido essa pergunta. Você ja esqueceu?";
+	public final static String MSG_DIALOGO2_3 = EmojiParser.parseToUnicode("Acabei de nascer! Tenho poucas horas de vida :innocent:");
+	public final static String MSG_DIALOGO2_4 = EmojiParser.parseToUnicode("Acredito que já tenha respondido essa pergunta :no_mouth:. Você ja esqueceu?");
 	public final static String MSG_DIALOGO2_5 = "Tenho 10 anos a menos que voc� e 20 anos a mais do que você terá";
 	
 	//Mensagens do Dialogo 3
 	public final static String MSG_DIALOGO3_1 = "Nada de novo! Bom Dia para você também";
-	public final static String MSG_DIALOGO3_2 = "Não tenho feito muita coisa devido a pandemia";
+	public final static String MSG_DIALOGO3_2 = EmojiParser.parseToUnicode("Não tenho feito muita coisa devido a pandemia :mask:");
 	public final static String MSG_DIALOGO3_3 = "Não tenho feito muita coisa, mas seria bom prativar uma atividade física";
 	public final static String MSG_DIALOGO3_4 = "Tenho apenas trabalhado recentemente";
 	public final static String MSG_DIALOGO3_5 = "Recentemente tenho feito artes marciais e natação";
