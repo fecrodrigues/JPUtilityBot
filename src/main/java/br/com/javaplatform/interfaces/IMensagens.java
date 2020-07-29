@@ -58,7 +58,7 @@ public abstract class IMensagens {
 		}
 		
 		if(isMsgNaoEntendida) {
-			MessagePrepare("Desculpa, mas não entendi o que você disse!", update);
+			MessagePrepare("Desculpa, mas nÃ£o entendi o que vocÃª disse!", update);
 		}
 	};
 	

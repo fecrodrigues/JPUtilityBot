@@ -13,7 +13,7 @@ public class BoasVindas extends IMensagens{
 
 	@Override
 	public void respostaBoasVindas(Update update) {
-		String msg = "Olá! Eu sou o Utility bot, prazer em conhecer você";
+		String msg = "OlÃ¡! Eu sou o Utility bot, prazer em conhecer vocÃª";
 		
 		MessagePrepare(msg, update);
         
@@ -29,21 +29,21 @@ public class BoasVindas extends IMensagens{
 
 	@Override
 	public void respostaDialogo2(Update update) {
-		String msg = "Acho que antes de falarmos de idade, poderiams começar com um \"Bom Dia!\", não?";
+		String msg = "Acho que antes de falarmos de idade, poderiamos comeï¿½ar com um \"Bom Dia!\", nÃ£o?";
 		
 		MessagePrepare(msg, update);	
 	}
 
 	@Override
 	public void respostaDialogo3(Update update) {
-		String msg = "Nada de novo! Bom Dia para você também";
+		String msg = "Nada de novo! Bom Dia para vocï¿½ tambï¿½m";
 		
 		MessagePrepare(msg, update);
 	}
 
 	@Override
 	public void respostaDespedida(Update update) {
-		String msg = "Nem começamos e você ja quer ir embora?";
+		String msg = "Nem comeï¿½amos e vocï¿½ ja quer ir embora?";
 		
 		MessagePrepare(msg, update);
 	}
