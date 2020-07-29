@@ -1,9 +1,11 @@
 package br.com.javaplatform.utils;
 
+import com.vdurmont.emoji.EmojiParser;
+
 public class Constantes {
 	
 	//Mensagens de Boas Vindas
-	public final static String MSG_BOAS_VINDAS_1 = "Olá! Eu sou um bot, prazer em conhecer você";
+	public final static String MSG_BOAS_VINDAS_1 = EmojiParser.parseToUnicode("Olá! Eu sou um BOT aprendiz :alien:, prazer em conhecer você :smile:");
 	public final static String MSG_BOAS_VINDAS_2 = "Acredito que ja tenha falado \"Oi\" para você hoje";
 	public final static String MSG_BOAS_VINDAS_3 = "Por que você gosta de falar tantos \"Oi\"?";
 	public final static String MSG_BOAS_VINDAS_4 = "Nossa, quantas vezes eu vou precisar falar \"Bom Dia\"?";

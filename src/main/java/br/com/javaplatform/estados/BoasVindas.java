@@ -7,7 +7,6 @@ import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO3_1;
 import static br.com.javaplatform.utils.Constantes.MSG_DESPEDIDA_1;
 
 import com.pengrad.telegrambot.model.Update;
-
 import br.com.javaplatform.JPUtilityBot;
 import br.com.javaplatform.interfaces.IMensagens;
 

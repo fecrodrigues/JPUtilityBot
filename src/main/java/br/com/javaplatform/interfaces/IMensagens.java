@@ -58,7 +58,7 @@ public abstract class IMensagens {
 					contador++;
 					break;
 				case NAO_ENTENDI:
-					MessagePrepare("Desculpa, mas não entendi o que você disse! [Teste]", update);
+					MessagePrepare("Desculpa, mas nÃ£o entendi o que vocÃª disse! [Teste]", update);
 					contador++;
 					break;
 				}
