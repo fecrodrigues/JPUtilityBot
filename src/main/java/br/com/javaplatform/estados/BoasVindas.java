@@ -1,9 +1,9 @@
 package br.com.javaplatform.estados;
 
 import com.pengrad.telegrambot.model.Update;
-
 import br.com.javaplatform.JPUtilityBot;
 import br.com.javaplatform.interfaces.IMensagens;
+import com.vdurmont.emoji.EmojiParser;
 
 public class BoasVindas extends IMensagens{
 
@@ -13,8 +13,9 @@ public class BoasVindas extends IMensagens{
 
 	@Override
 	public void respostaBoasVindas(Update update) {
-		String msg = "Olá! Eu sou o Utility bot, prazer em conhecer você";
-		
+		String msg = EmojiParser.parseToUnicode("Olá! Eu sou um BOT aprendiz :alien:, prazer em conhecer você :smile:");
+		//String msg = EmojiParser.parseToUnicode("Here is a smile emoji: :smile:\\n\\n Here is alien emoji: :alien:");
+
 		MessagePrepare(msg, update);
         
 		maquinaDeMensagens.setEstado(maquinaDeMensagens.getDialogo1());
