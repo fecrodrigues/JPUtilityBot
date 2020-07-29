@@ -23,12 +23,14 @@ import java.util.*;
 // Trash
 import java.io.DataOutputStream;
 
-
+//Classe responsavel por realizar as ações solicitadas pelo usuario (/cep ou /clima)
 public class JPUtilityActions {
 
     public JPUtilityActions() { }
 
+    //Método responsavel por detectar qual o comando a ser executado com base na mensagem
     public String callAction(String command) {
+        //Quebrando a mensagem em partes para detectar o comando e seus parametros
         String[] commandParts = command.split(" ");
         String actionName = commandParts[0];
 
@@ -37,7 +39,7 @@ public class JPUtilityActions {
                 StringBuilder welcomeMessage = new StringBuilder();
 
                 return welcomeMessage
-                            .append("Olá, me chamo Utility Boot, aqui estão algumas coisas que consigo fazer: \n")
+                            .append("Olá, aqui estão algumas coisas que consigo fazer: \n")
                             .append("/cep {cep} (Ex: /cep 0333300) \n")
                             .append("/clima {clima} (Ex: /clima saopaulo_sp) \n")
                             .toString();
@@ -77,18 +79,23 @@ public class JPUtilityActions {
 
     }
 
+    //Método responsavel por fazer a consulta do CEP informado
     public String searchCEP(String numberCEP) throws IOException {
 
+        //Criando uma nova chamada para API de CEP
         URL url = new URL("https://viacep.com.br/ws/" + numberCEP + "/json/");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
+        //Informandos os tempos de timeout da requisição
         con.setConnectTimeout(5000);
         con.setReadTimeout(5000);
 
         Integer status = con.getResponseCode();
 
+        //Pegando o retorno da chamada
         if(status == 200) {
+            //Lendo a resposta da API
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
             StringBuffer content = new StringBuffer();
@@ -98,11 +105,14 @@ public class JPUtilityActions {
             in.close();
             con.disconnect();
 
+            //Utilizando a biblioteca GSON para converter o resultado da API em um Objeto do tipo InfoCEP
             Gson gson = new Gson();
             InfoCEP infoCep = gson.fromJson(content.toString(), InfoCEP.class);
 
+            //Utilizando o método toString do objeto para retornar uma mensagem formatada ao usuário
             return infoCep.toString();
         } else {
+            //Mensagem de erro caso o status da requisição seja diferente de 200 (OK)
             return "Não consigo consultar este CEP, um CEP válido seria: \"/cep 03333300\"";
         }
 

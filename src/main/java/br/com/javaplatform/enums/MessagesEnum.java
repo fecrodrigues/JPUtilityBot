@@ -12,11 +12,7 @@ public enum MessagesEnum {
 
     DESPEDIDA("\\b(?:Obrigado|Até|Adeus|Tchau)\\b"),
     
-    AJUDA("\\b(?:ajuda|ajudar|fazer)\\b"),
-
-	CLIMA("/(?:clima)"),
-    
-    TRANSITO("/(?:transito)");
+    NAO_ENTENDI("");
 
     private String regex;
 
