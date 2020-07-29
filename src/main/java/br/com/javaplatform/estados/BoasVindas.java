@@ -1,5 +1,11 @@
 package br.com.javaplatform.estados;
 
+import static br.com.javaplatform.utils.Constantes.MSG_BOAS_VINDAS_1;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO1_1;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO2_1;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO3_1;
+import static br.com.javaplatform.utils.Constantes.MSG_DESPEDIDA_1;
+
 import com.pengrad.telegrambot.model.Update;
 
 import br.com.javaplatform.JPUtilityBot;
@@ -13,39 +19,29 @@ public class BoasVindas extends IMensagens{
 
 	@Override
 	public void respostaBoasVindas(Update update) {
-		String msg = "Olá! Eu sou o Utility bot, prazer em conhecer você";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_BOAS_VINDAS_1, update);
         
 		maquinaDeMensagens.setEstado(maquinaDeMensagens.getDialogo1());
 	}
 
 	@Override
 	public void respostaDialogo1(Update update) {
-		String msg = "Vou bem, mas poderia estar melhor com um \"Bom Dia!\" antes!";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_DIALOGO1_1, update);
 	}
 
 	@Override
 	public void respostaDialogo2(Update update) {
-		String msg = "Acho que antes de falarmos de idade, poderiams começar com um \"Bom Dia!\", não?";
-		
-		MessagePrepare(msg, update);	
+		MessagePrepare(MSG_DIALOGO2_1, update);	
 	}
 
 	@Override
 	public void respostaDialogo3(Update update) {
-		String msg = "Nada de novo! Bom Dia para você também";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_DIALOGO3_1, update);
 	}
 
 	@Override
-	public void respostaDespedida(Update update) {
-		String msg = "Nem começamos e você ja quer ir embora?";
-		
-		MessagePrepare(msg, update);
+	public void respostaDespedida(Update update) {		
+		MessagePrepare(MSG_DESPEDIDA_1, update);
 	}
 
 }
