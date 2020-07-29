@@ -1,16 +1,20 @@
 package br.com.javaplatform.enums;
 
+
+/**
+ * Enum responsável por gardar regex para analisar padróes de mensagem
+ */
 public enum MessagesEnum {
 
-    BOAS_VINDAS("\\b(?:ola|oi|eae)\\b"),
+    BOAS_VINDAS("(o|O)(i|I|L|l)(a|A)?|(e|E)(a|A)(e|E)"),
 
-    DIALOGO1("\\b(?:como você|você está|como voce|voce esta|tudo bem|como vai)\\b"),
+    DIALOGO1("((C|c)omo\\s(voc(e|ê))?\\s?(est(a|á))?|((t|T)udo)\\sbem|((C|c)omo)\\svai"),
 
-    DIALOGO2("\\b(?:anos|idade)\\b"),
+    DIALOGO2("(((Q|q)uantos)|((Q|q)ual))\\s?\\w*?\\s(anos)?(idade)?"),
 
-    DIALOGO3("\\b(?:fazendo)\\b"),
+    DIALOGO3("((O|o)(que|q))\\s\\w*?\\s?\\w*?\\s(faz|fazendo|feito)"),
 
-    DESPEDIDA("\\b(?:Obrigado|At�|Adeus|Tchau)\\b"),
+    DESPEDIDA("(O|o)brigado|(A|a)deus|(A|a)t?t(e|é)?|(T|t)chau"),
     
     NAO_ENTENDI("");
 
