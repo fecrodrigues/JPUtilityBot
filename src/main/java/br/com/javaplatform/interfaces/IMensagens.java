@@ -26,6 +26,10 @@ public abstract class IMensagens {
 		this.maquinaDeMensagens = maquinaDeMensagens;
 	}
 	
+	/**
+	 * Método responsável por comparar as mensagens enviadas com o enum de regex e definir qual 
+	 * método da classe de estado deve ser acionada
+	*/
 	public void matcher(Update update) {
 	    String message = update.message().text();
 	    Boolean isMsgNaoEntendida = true;
@@ -58,7 +62,7 @@ public abstract class IMensagens {
 					contador++;
 					break;
 				case NAO_ENTENDI:
-					MessagePrepare("Desculpa, mas não entendi o que você disse! [Teste]", update);
+					MessagePrepare("Desculpa, mas não entendi o que você disse!", update);
 					contador++;
 					break;
 				}
@@ -66,6 +70,7 @@ public abstract class IMensagens {
 		}
 	};
 	
+	//métodos de resposta herdados pelas classes de estado
 	public abstract void respostaBoasVindas(Update update);
 	public abstract void respostaDialogo1(Update update);
 	public abstract void respostaDialogo2(Update update);

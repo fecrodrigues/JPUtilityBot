@@ -1,5 +1,11 @@
 package br.com.javaplatform.estados;
 
+import static br.com.javaplatform.utils.Constantes.MSG_BOAS_VINDAS_5;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO1_5;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO2_5;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO3_5;
+import static br.com.javaplatform.utils.Constantes.MSG_DESPEDIDA_5;
+
 import com.pengrad.telegrambot.model.Update;
 
 import br.com.javaplatform.JPUtilityBot;
@@ -13,37 +19,27 @@ public class Despedida extends IMensagens{
 
 	@Override
 	public void respostaBoasVindas(Update update) {
-		String msg = "Acho que ja tivemos essa coversa, não?";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_BOAS_VINDAS_5, update);
 	}
 
 	@Override
 	public void respostaDialogo1(Update update) {
-		String msg = "Esta tudo OK";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_DIALOGO1_5, update);
 	}
 
 	@Override
 	public void respostaDialogo2(Update update) {
-		String msg = "Tenho 10 anos a menos que você e 20 a mais do que seu irmão";
-		
-		MessagePrepare(msg, update);	
+		MessagePrepare(MSG_DIALOGO2_5, update);	
 	}
 
 	@Override
 	public void respostaDialogo3(Update update) {
-		String msg = "Recentemente tenho feito artes marciais e natação";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_DIALOGO3_5, update);
 	}
 
 	@Override
 	public void respostaDespedida(Update update) {
-		String msg = "Gostei da coversa. Boa semana";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_DESPEDIDA_5, update);
 		
 		maquinaDeMensagens.setEstado(maquinaDeMensagens.getBoasVindas());
 	}

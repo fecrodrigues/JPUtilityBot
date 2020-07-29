@@ -4,13 +4,36 @@ import br.com.javaplatform.JPUtilityBot;
 import br.com.javaplatform.interfaces.IMensagens;
 
 public class MaquinaDeMensagens {
+	/**
+	 * Recebe estado de estado de 'Boas Vindas'
+	 */
 	private IMensagens boasVindas;
+	
+	/**
+	 * Recebe estado de estado do 'Dialogo 1'
+	 */
 	private IMensagens dialogo1;
+
+	/**
+	 * Recebe estado de estado do 'Dialogo 2'
+	 */
 	private IMensagens dialogo2;
+	
+	/**
+	 * Recebe estado de estado do 'Dialogo 3'
+	 */
 	private IMensagens dialogo3;
+	
+	/**
+	 * Recebe estado de 'Despedida'
+	 */
 	private IMensagens despedida;
-		
+	
+	/**
+	 * Recebe estado atual de acordo com a mensagem enviada pelo usuário
+	 */	
 	private IMensagens estado;
+	
 	
 	public MaquinaDeMensagens(JPUtilityBot bot){
 		boasVindas = new BoasVindas(bot,this);

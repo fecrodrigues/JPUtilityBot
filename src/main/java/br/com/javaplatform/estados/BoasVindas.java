@@ -1,9 +1,14 @@
 package br.com.javaplatform.estados;
 
+import static br.com.javaplatform.utils.Constantes.MSG_BOAS_VINDAS_1;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO1_1;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO2_1;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO3_1;
+import static br.com.javaplatform.utils.Constantes.MSG_DESPEDIDA_1;
+
 import com.pengrad.telegrambot.model.Update;
 import br.com.javaplatform.JPUtilityBot;
 import br.com.javaplatform.interfaces.IMensagens;
-import com.vdurmont.emoji.EmojiParser;
 
 public class BoasVindas extends IMensagens{
 
@@ -13,40 +18,29 @@ public class BoasVindas extends IMensagens{
 
 	@Override
 	public void respostaBoasVindas(Update update) {
-		String msg = EmojiParser.parseToUnicode("Olá! Eu sou um BOT aprendiz :alien:, prazer em conhecer você :smile:");
-		//String msg = EmojiParser.parseToUnicode("Here is a smile emoji: :smile:\\n\\n Here is alien emoji: :alien:");
-
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_BOAS_VINDAS_1, update);
         
 		maquinaDeMensagens.setEstado(maquinaDeMensagens.getDialogo1());
 	}
 
 	@Override
 	public void respostaDialogo1(Update update) {
-		String msg = "Vou bem, mas poderia estar melhor com um \"Bom Dia!\" antes!";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_DIALOGO1_1, update);
 	}
 
 	@Override
 	public void respostaDialogo2(Update update) {
-		String msg = "Acho que antes de falarmos de idade, poderiamos come�ar com um \"Bom Dia!\", não?";
-		
-		MessagePrepare(msg, update);	
+		MessagePrepare(MSG_DIALOGO2_1, update);	
 	}
 
 	@Override
 	public void respostaDialogo3(Update update) {
-		String msg = "Nada de novo! Bom Dia para voc� tamb�m";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_DIALOGO3_1, update);
 	}
 
 	@Override
-	public void respostaDespedida(Update update) {
-		String msg = "Nem come�amos e voc� ja quer ir embora?";
-		
-		MessagePrepare(msg, update);
+	public void respostaDespedida(Update update) {		
+		MessagePrepare(MSG_DESPEDIDA_1, update);
 	}
 
 }

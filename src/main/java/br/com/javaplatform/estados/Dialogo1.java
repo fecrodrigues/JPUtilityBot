@@ -1,5 +1,11 @@
 package br.com.javaplatform.estados;
 
+import static br.com.javaplatform.utils.Constantes.MSG_BOAS_VINDAS_2;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO1_2;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO2_2;
+import static br.com.javaplatform.utils.Constantes.MSG_DIALOGO3_2;
+import static br.com.javaplatform.utils.Constantes.MSG_DESPEDIDA_2;
+
 import com.pengrad.telegrambot.model.Update;
 
 import br.com.javaplatform.JPUtilityBot;
@@ -14,39 +20,29 @@ public class Dialogo1 extends IMensagens{
 
 	@Override
 	public void respostaBoasVindas(Update update) {
-		String msg = "Nossa, quantas vezes eu vou precisar falar \"Bom Dia\"?";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_BOAS_VINDAS_2, update);
 	}
 
 	@Override
 	public void respostaDialogo1(Update update) {
-		String msg = "Não tenho o que reclamar! As coisas estam dando certo utimamente :)";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_DIALOGO1_2, update);
         
 		maquinaDeMensagens.setEstado(maquinaDeMensagens.getDialogo2());
 	}
 
 	@Override
 	public void respostaDialogo2(Update update) {
-		String msg = "Não somos tao chegados a esse ponto";
-		
-		MessagePrepare(msg, update);	
+		MessagePrepare(MSG_DIALOGO2_2, update);	
 	}
 
 	@Override
 	public void respostaDialogo3(Update update) {
-		String msg = "Não tenho feito muita coisa devido a pandemia";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_DIALOGO3_2, update);
 	}
 
 	@Override
 	public void respostaDespedida(Update update) {
-		String msg = "Nossa o papo nem começou e você já quer sair. Lamentável isso.";
-		
-		MessagePrepare(msg, update);
+		MessagePrepare(MSG_DESPEDIDA_2, update);
 	}
 
 }
